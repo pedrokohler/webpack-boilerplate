@@ -1,7 +1,8 @@
-const paths = require('./paths')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const common = require('./webpack.common.js')
+const webpack = require("webpack");
+const merge = require("webpack-merge");
+const Dotenv = require("dotenv-webpack");
+const paths = require("./paths");
+const common = require("./webpack.common.js");
 
 module.exports = merge(common, {
   /**
@@ -9,14 +10,14 @@ module.exports = merge(common, {
    *
    * Set the mode to development or production.
    */
-  mode: 'development',
+  mode: "development",
 
   /**
    * Devtool
    *
    * Control how source maps are generated.
    */
-  devtool: 'inline-source-map',
+  devtool: "inline-source-map",
 
   /**
    * DevServer
@@ -39,5 +40,8 @@ module.exports = merge(common, {
      * Only update what has changed.
      */
     new webpack.HotModuleReplacementPlugin(),
+    new Dotenv({
+      path: "./.env.development",
+    }),
   ],
-})
+});
